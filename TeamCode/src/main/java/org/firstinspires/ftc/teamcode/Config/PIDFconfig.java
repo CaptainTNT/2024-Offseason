@@ -29,7 +29,7 @@ public class PIDFconfig extends OpMode {
     @Override
     public void loop(){
         controller.setPID(p, i, d);
-        int armPos = LaunchMotor.getCurrentPosition();
+        int armPos = motor.armMotor.getCurrentPosition();
         double pid = controller.calculate(armPos, target);
         double ff = Math.cos(Math.toRadians(target / ticks_in_degree)) * f;
 
@@ -40,8 +40,8 @@ public class PIDFconfig extends OpMode {
         power = pid + ff - proportionalTerm;
         power = Range.clip(power, -0.5, 0.5);
 
-        LaunchMotor.setPower(power);
-        LaunchMotor2.setPower(power);
+        motor.armMotor.setPower(power);
+        motor.armMotor2.setPower(power);
 
 
         if (gamepad2.left_stick_y > 0){
