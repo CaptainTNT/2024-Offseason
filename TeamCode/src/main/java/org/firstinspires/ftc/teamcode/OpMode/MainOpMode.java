@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.OpMode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.teamcode.Config.hardwareImports;
+import org.firstinspires.ftc.teamcode.Config.Motors.hardwareImports;
 
 public class MainOpMode extends OpMode {
     hardwareImports hardwaremap = new hardwareImports(hardwareMap);
