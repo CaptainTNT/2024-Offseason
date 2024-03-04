@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import org.firstinspires.ftc.teamcode.Config.Motors.hardwareImports;
 
 public class MainOpMode extends OpMode {
-    hardwareImports hardwaremap = new hardwareImports(hardwareMap);
+    hardwareImports hm = new hardwareImports(hardwareMap);
 
 
     @Override
