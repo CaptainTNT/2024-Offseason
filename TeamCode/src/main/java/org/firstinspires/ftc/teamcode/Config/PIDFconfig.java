@@ -18,9 +18,10 @@ import com.qualcomm.robotcore.util.Range;
 @TeleOp
 public class PIDFconfig extends OpMode {
     hardwareImports motor = new hardwareImports(hardwareMap);
+    teleopConstant tp = new teleopConstant();
     @Override
     public void init(){
-        controller = new PIDController(p, i, d);
+        tp.controller = new PIDController(tp.p, tp.i, tp.d);
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         motor.armMotor2.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -28,30 +29,30 @@ public class PIDFconfig extends OpMode {
 
     @Override
     public void loop(){
-        controller.setPID(p, i, d);
-        int armPos = LaunchMotor.getCurrentPosition();
-        double pid = controller.calculate(armPos, target);
-        double ff = Math.cos(Math.toRadians(target / ticks_in_degree)) * f;
+        tp.controller.setPID(tp.p, tp.i, tp.d);
+        int armPos = motor.armMotor.getCurrentPosition();
+        double pid = tp.controller.calculate(armPos, tp.target);
+        double ff = Math.cos(Math.toRadians(tp.target / tp.ticks_in_degree)) * tp.f;
 
         double power = pid + ff;
 
-        double proportionalTerm = 0.0015 * (target - armPos);
+        double proportionalTerm = 0.0015 * (tp.target - armPos);
 
         power = pid + ff - proportionalTerm;
         power = Range.clip(power, -0.5, 0.5);
 
-        LaunchMotor.setPower(power);
-        LaunchMotor2.setPower(power);
+        motor.armMotor.setPower(power);
+        motor.armMotor2.setPower(power);
 
 
         if (gamepad2.left_stick_y > 0){
-            target += 2;
+            tp.target += 2;
         } else if (gamepad2.left_stick_y < 0){
-            target -= 2;
+            tp.target -= 2;
         }
 
 
-        telemetry.addData("pos ", armPos);
-        telemetry.addData("target", target);
+        telemetry.addData("pos", armPos);
+        telemetry.addData("target", tp.target);
     }
 }

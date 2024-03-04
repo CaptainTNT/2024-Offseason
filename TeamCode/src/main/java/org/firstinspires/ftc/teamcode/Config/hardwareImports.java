@@ -8,6 +8,7 @@ import com.acmerobotics.dashboard.config.Config;
 
 @Config
 public class hardwareImports {
+
     //Defines drive variables
     DcMotor leftFront = null;
     DcMotor rightFront = null;
@@ -24,6 +25,7 @@ public class hardwareImports {
     Servo Servo5 = null;
     Servo Servo6 = null;
     Servo Servo7 = null;
+
     public hardwareImports(HardwareMap hardwareMap) {
 
 
