@@ -8,23 +8,24 @@ import com.acmerobotics.dashboard.config.Config;
 
 @Config
 public class hardwareImports {
-    public hardwareImports(HardwareMap hardwareMap) {
-        //Defines drive variables
-        DcMotor leftFront = null;
-        DcMotor rightFront = null;
-        DcMotor leftRear = null;
-        DcMotor rightRear = null;
+    //Defines drive variables
+    DcMotor leftFront = null;
+    DcMotor rightFront = null;
+    DcMotor leftRear = null;
+    DcMotor rightRear = null;
 
-        //Defines attachment variables
-        DcMotorEx armMotor = null;
-        DcMotorEx armMotor2 = null;
-        Servo Servo1 = null;
-        Servo Servo2 = null;
-        Servo Servo3 = null;
-        Servo Servo4 = null;
-        Servo Servo5 = null;
-        Servo Servo6 = null;
-        Servo Servo7 = null;
+    //Defines attachment variables
+    DcMotorEx armMotor = null;
+    DcMotorEx armMotor2 = null;
+    Servo Servo1 = null;
+    Servo Servo2 = null;
+    Servo Servo3 = null;
+    Servo Servo4 = null;
+    Servo Servo5 = null;
+    Servo Servo6 = null;
+    Servo Servo7 = null;
+    public hardwareImports(HardwareMap hardwareMap) {
+
 
         //Defines the driving variables to the hardwareMap
         leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
