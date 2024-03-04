@@ -10,21 +10,21 @@ import com.acmerobotics.dashboard.config.Config;
 public class hardwareImports {
 
     //Defines drive variables
-    DcMotor leftFront = null;
-    DcMotor rightFront = null;
-    DcMotor leftRear = null;
-    DcMotor rightRear = null;
+    public DcMotor leftFront = null;
+    public DcMotor rightFront = null;
+    public DcMotor leftRear = null;
+    public DcMotor rightRear = null;
 
     //Defines attachment variables
-    DcMotorEx armMotor = null;
-    DcMotorEx armMotor2 = null;
-    Servo Servo1 = null;
-    Servo Servo2 = null;
-    Servo Servo3 = null;
-    Servo Servo4 = null;
-    Servo Servo5 = null;
-    Servo Servo6 = null;
-    Servo Servo7 = null;
+    public DcMotorEx armMotor = null;
+    public DcMotorEx armMotor2 = null;
+    public Servo Servo1 = null;
+    public Servo Servo2 = null;
+    public Servo Servo3 = null;
+    public Servo Servo4 = null;
+    public Servo Servo5 = null;
+    public Servo Servo6 = null;
+    public Servo Servo7 = null;
 
     public hardwareImports(HardwareMap hardwareMap) {
 
