@@ -8,7 +8,10 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.gamepad.ToggleButtonReader;
 import com.arcrobotics.ftclib.gamepad.TriggerReader;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Config.Motors.PIDFarm.*;
 
@@ -29,6 +32,8 @@ public class MainOpMode extends OpMode {
     double pid;
     double ff;
     double power;
+    double leftServo;
+    double rightServo;
     int newTarget;
 
     boolean Safety;
@@ -57,6 +62,22 @@ public class MainOpMode extends OpMode {
         newTarget = 10;
         Safety = true;
         Armed = false;
+
+
+        hm.rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        hm.leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
+        hm.Servo1.setPosition(Servo.Direction.REVERSE.ordinal());
+
+        hm.spoolMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        hm.leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        hm.rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        hm.leftRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        hm.rightRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        hm.armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        hm.armMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        hm.armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        hm.armMotor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         hm.Servo3.setPosition(1);
         hm.Servo4.setPosition(0);
@@ -100,5 +121,35 @@ public class MainOpMode extends OpMode {
         if (DriverOp2.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
             newTarget = -1350;
         }
+
+        if (LTR2.wasJustPressed()){
+            rightServo = (rightServo == 0) ? 1 : 0;
+        }
+        if (RTR2.wasJustPressed()){
+            leftServo = (leftServo == 0) ? 1 : 0;
+        }
+
+        if (gamepad2.triangle){
+            hm.Servo3.setPosition(0);
+            hm.Servo4.setPosition(1);
+        }
+
+        hm.Servo1.setPosition(rightServo);
+        hm.Servo2.setPosition(leftServo);
+        
+        hm.spoolMotor.setPower(gamepad2.right_stick_y);
+        Vertical = Math.min(Math.max(gamepad1.left_stick_x, -Speed), Speed);
+        Horizontal = Math.min(Math.max(-gamepad1.left_stick_y, -Speed), Speed);
+        Pivot = Math.min(Math.max(gamepad1.right_stick_x, -TurnSpeed), TurnSpeed);
+        hm.leftRear.setPower(-Pivot + (Vertical - Horizontal));
+        hm.rightRear.setPower(-Pivot + Vertical + Horizontal);
+        hm.leftFront.setPower(Pivot + Vertical + Horizontal);
+        hm.rightFront.setPower(Pivot + (Vertical - Horizontal));
+    }
+
+    @Override
+    public void stop(){
+        telemetry.addData("Info", "OpMode has been successfully stopped");
+        telemetry.update();
     }
 }

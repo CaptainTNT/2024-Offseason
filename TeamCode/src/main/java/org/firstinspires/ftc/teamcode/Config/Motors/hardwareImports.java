@@ -18,6 +18,7 @@ public class hardwareImports {
     //Defines attachment variables
     public DcMotorEx armMotor = null;
     public DcMotorEx armMotor2 = null;
+    public DcMotor spoolMotor = null;
     public Servo Servo1 = null;
     public Servo Servo2 = null;
     public Servo Servo3 = null;
@@ -38,6 +39,7 @@ public class hardwareImports {
         //Defines the attachment variables to the hardwareMap
         armMotor = hardwareMap.get(DcMotorEx.class, "Launch Motor");
         armMotor2 = hardwareMap.get(DcMotorEx.class, "Launch Motor 2");
+        spoolMotor = hardwareMap.get(DcMotor.class, "Launch Motor 3");
         Servo1 = hardwareMap.get(Servo.class, "Servo1");
         Servo2 = hardwareMap.get(Servo.class, "servo2");
         Servo3 = hardwareMap.get(Servo.class, "servo 3");
