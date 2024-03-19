@@ -11,14 +11,17 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.teamcode.Config.Motors.PIDFarm.*;
 
 import org.firstinspires.ftc.teamcode.Config.Motors.hardwareImports;
 
+
 public class MainOpMode extends OpMode {
-    hardwareImports hm = new hardwareImports(hardwareMap);
+    hardwareImports hm= new hardwareImports(hardwareMap);
+
+
 
     double Speed;
     double MaxSpeed;
@@ -52,6 +55,8 @@ public class MainOpMode extends OpMode {
 
     @Override
     public void init() {
+        hardwareImports hm = new hardwareImports(hardwareMap);
+
 
         Speed = 0.85;
         MaxSpeed = 1;
@@ -64,6 +69,7 @@ public class MainOpMode extends OpMode {
         Armed = false;
 
 
+        hm.rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
         hm.rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
         hm.leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
         hm.Servo1.setPosition(Servo.Direction.REVERSE.ordinal());
@@ -90,6 +96,9 @@ public class MainOpMode extends OpMode {
 
     @Override
     public void loop() {
+        hardwareImports hm = new hardwareImports(hardwareMap);
+
+
         PIDF_Arm(newTarget);
 
         if (gamepad2.touchpad && Safety){

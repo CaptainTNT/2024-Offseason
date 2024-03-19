@@ -1,34 +1,35 @@
 package org.firstinspires.ftc.teamcode.Config.Motors;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.acmerobotics.dashboard.config.Config;
 
+import java.util.Arrays;
+import java.util.List;
+
 
 @Config
 public class hardwareImports {
 
-    //Defines drive variables
-    public DcMotor leftFront = null;
-    public DcMotor rightFront = null;
-    public DcMotor leftRear = null;
-    public DcMotor rightRear = null;
+    private DcMotorEx rightFront,leftFront,leftRear,rightRear = null;
+
+
 
     //Defines attachment variables
-    public DcMotorEx armMotor = null;
-    public DcMotorEx armMotor2 = null;
-    public DcMotor spoolMotor = null;
-    public Servo Servo1 = null;
-    public Servo Servo2 = null;
-    public Servo Servo3 = null;
-    public Servo Servo4 = null;
-    public Servo Servo5 = null;
-    public Servo Servo6 = null;
-    public Servo Servo7 = null;
+    private DcMotorEx armMotor = null;
+    private DcMotorEx armMotor2 = null;
+    private  DcMotor spoolMotor = null;
+    private Servo Servo1 = null;
+    private Servo Servo2 = null;
+    private Servo Servo3 = null;
+    private Servo Servo4 = null;
+    private Servo Servo5 = null;
+    private Servo Servo6 = null;
+    private Servo Servo7 = null;
 
     public hardwareImports(HardwareMap hardwareMap) {
-
 
         //Defines the driving variables to the hardwareMap
         leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
